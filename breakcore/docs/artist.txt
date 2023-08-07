@@ -2,7 +2,7 @@
 
 #b
 - BLKSMIITH
-  - SoundCloud: not found
+  - SoundCloud: https://soundcloud.com/magicmayne
   - YouTube:    https://www.youtube.com/@blksmiith
 #o
 - OOXYGEN
