@@ -1,69 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="text/css" href="style/style.css">
-  <link rel="icon" type="text/css" href="images/icon.ico">
-  <title>Brakcore System | Breakcore Radio</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style/style.css">
+    <link rel="icon" type="text/css" href="images/icon.ico">
+    <title>Brakcore System | Breakcore Radio</title>
 </head>
+
 <body>
-  <div class="audio-container">
-    <audio controls autoplay muted>
-      <source src="mp3/tst.mp3" type="audio/mpeg">
+<div id="player">
+    <audio id="audio" autoplay muted>
+        <source src="" type="audio/mpeg">
+        Your browser does not support the audio element.
     </audio>
-  </div>
+    <script>
+        const audio = document.getElementById('audio');
+        const songs = [
+            { name: 'ForStart', url: 'mp3/forstart.mp3', duration: '2:48' },
+            { name: 'virtue 00 - BLKSMIITH', url: 'mp3/virtue_00.mp3', duration: '3:15' },
+            { name: 'RAVE RATS VOLUME 1 - OOXYGEN', url: 'mp3/rrv1i.mp3', duration: '2:30' },
+            // Aggiungi qui altri brani con i loro nomi, URL e durata
+        ];
 
-  <div class="up_bar">
-    <a href="https://github.com/RedKatz/redkatz.github.io/blob/main/breakcore" class="button-link" target="_blank">
-      <button style="margin-right: 5px; display: block; border-bottom: 2px solid black; border-right: 2px solid black; border-left: 2px solid white; border-top: 2px solid white; font-size: 12px; background-color: lightgray; border-radius: 0px; width: 150px; text-align: left;">
-        <img src="images/source.ico" width="15" height="16" style="height: 15px; vertical-align: middle;"> Source Code
-      </button>
-    </a>
-    <a href="https://github.com/RedKatz/redkatz.github.io/blob/main/breakcore/docs/artist.txt" class="button-link" target="_blank">
-      <button style="margin-right: 5px; display: block; border-bottom: 2px solid black; border-right: 2px solid black; border-left: 2px solid white; border-top: 2px solid white; font-size: 12px; background-color: lightgray; border-radius: 0px; width: 150px; text-align: left;">
-        <img src="images/artist.ico" width="15" height="16" style="height: 15px; vertical-align: middle;"> Artist List
-      </button>
-    </a>
+        let currentSongIndex = 0;
 
-    <a href="https://github.com/RedKatz/redkatz.github.io/blob/main/breakcore" class="button-link" target="_blank">
-      <button style="margin-right: 5px; display: block; border-bottom: 2px solid black; border-right: 2px solid black; border-left: 2px solid white; border-top: 2px solid white; font-size: 12px; background-color: lightgray; border-radius: 0px; width: 150px; text-align: left;">
-        <img src="images/discord.png" width="15" height="16" style="height: 15px; vertical-align: middle;"> Discord
-      </button>
-    </a>
-  </div>
+        function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
 
-  <script>
-    function cambiaSfondoCasuale() {
-      const sfondi = [
-        'gif/1.gif',
-        'gif/2.gif',
-        'gif/3.gif',
-        'gif/4.gif',
-        'gif/5.gif',
-        'gif/6.gif',
-        'gif/7.gif',
-        'gif/8.gif',
-        'gif/9.gif',
-        'gif/10.gif',
-        'gif/11.gif',
-        'gif/12.gif',
-        'gif/13.gif',
-        'gif/14.gif',
-        'gif/15.gif',
-        'gif/16.gif',
-        'gif/17.gif',
-        'gif/18.gif',
-        'gif/19.gif',
-        // Add more paths to GIF images here
-      ];
-      const numeroCasuale = Math.floor(Math.random() * sfondi.length);
-      const sfondoCasuale = sfondi[numeroCasuale];
-      document.body.style.backgroundImage = `url('${sfondoCasuale}')`;
-    }
+        function playCurrentSong() {
+            const song = songs[currentSongIndex];
+            audio.src = song.url;
+            audio.play();
+            updateSongInfo(song.name, song.duration);
+        }
 
-    // Call the function once the page is loaded
-    cambiaSfondoCasuale();
-  </script>
+        function updateSongInfo(name, duration) {
+            const songInfoElement = document.getElementById('song-info');
+            songInfoElement.textContent = `Now Playing: ${name} [${duration}]`;
+        }
+
+        audio.addEventListener('ended', () => {
+            currentSongIndex = (currentSongIndex + 1) % songs.length;
+            playCurrentSong();
+        });
+
+        // Rimuovi 'playCurrentSong()' da questa posizione
+
+        // Mescola le canzoni, tranne la prima ('ForStart') che resta alla prima posizione
+        const songsToShuffle = songs.slice(1);
+        shuffle(songsToShuffle);
+        songs.splice(1, songs.length - 1, ...songsToShuffle);
+
+        playCurrentSong();
+    </script>
+    <div id="song-info"></div>
+    <button id="buttonpl" onclick="audio.muted = !audio.muted">on | off</button>
+</div>
+
+
+    <div class="up_bar">
+        <a href="https://github.com/RedKatz/redkatz.github.io/blob/main/breakcore" class="button-link" target="_blank">
+            <button style="margin-right: 5px; display: block; border-bottom: 2px solid black; border-right: 2px solid black; border-left: 2px solid white; border-top: 2px solid white; font-size: 12px; background-color: lightgray; border-radius: 0px; width: 150px; text-align: left;">
+                <img src="images/source.ico" width="15" height="16" style="height: 15px; vertical-align: middle;"> Source Code
+            </button>
+        </a>
+        <a href="https://github.com/RedKatz/redkatz.github.io/blob/main/breakcore/docs/artist.txt" class="button-link" target="_blank">
+            <button style="margin-right: 5px; display: block; border-bottom: 2px solid black; border-right: 2px solid black; border-left: 2px solid white; border-top: 2px solid white; font-size: 12px; background-color: lightgray; border-radius: 0px; width: 150px; text-align: left;">
+                <img src="images/artist.ico" width="15" height="16" style="height: 15px; vertical-align: middle;"> Artist List
+            </button>
+        </a>
+
+        <a href="https://github.com/RedKatz/redkatz.github.io/blob/main/breakcore" class="button-link" target="_blank">
+            <button style="margin-right: 5px; display: block; border-bottom: 2px solid black; border-right: 2px solid black; border-left: 2px solid white; border-top: 2px solid white; font-size: 12px; background-color: lightgray; border-radius: 0px; width: 150px; text-align: left;">
+                <img src="images/discord.png" width="15" height="16" style="height: 15px; vertical-align: middle;"> Discord
+            </button>
+        </a>
+    </div>
+
+    <script>
+        function cambiaSfondoCasuale() {
+            const sfondi = [
+                'gif/1.gif',
+                'gif/2.gif',
+                'gif/3.gif',
+                'gif/4.gif',
+                'gif/5.gif',
+                'gif/6.gif',
+                'gif/7.gif',
+                'gif/8.gif',
+                'gif/9.gif',
+                'gif/10.gif',
+                'gif/11.gif',
+                'gif/12.gif',
+                'gif/13.gif',
+                'gif/14.gif',
+                'gif/15.gif',
+                'gif/16.gif',
+                'gif/17.gif',
+                'gif/18.gif',
+                'gif/19.gif',
+                // Add more paths to GIF images here
+            ];
+            const numeroCasuale = Math.floor(Math.random() * sfondi.length);
+            const sfondoCasuale = sfondi[numeroCasuale];
+            document.body.style.backgroundImage = `url('${sfondoCasuale}')`;
+        }
+
+        // Call the function once the page is loaded
+        cambiaSfondoCasuale();
+    </script>
 </body>
+
 </html>
