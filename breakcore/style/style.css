@@ -6,7 +6,47 @@ body {
   background-color: #008080;
   position: relative; /* Add relative positioning to the body */
 }
+body {
+    background-color: #C0C0C0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
 
+#player {
+    width: 300px;
+    background-color: #C0C0C0;
+    border: 2px solid #808080;
+    padding: 10px;
+    text-align: center;
+    font-family: monospace;
+}
+
+audio::-webkit-media-controls-panel {
+    display: none !important;
+}
+
+audio {
+    outline: none;
+}
+
+#buttonpl {
+    background-color: #008080;
+    color: #FFFFFF;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-family: monospace;
+    font-size: 12px;
+    margin: 5px;
+}
+
+button:hover {
+    background-color: #006060;
+}
 button {
   font-family: monospace;
 }
