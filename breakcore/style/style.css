@@ -11,12 +11,27 @@ button {
   font-family: monospace;
 }
 
+a.button-link {
+  text-decoration: none;
+}
+
+#clock {
+  text-align: right;
+  padding-right: 20px;
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+  border-bottom: 1px solid white;
+  border-right: 1px solid white;
+  font-family: monospace;
+
+}
+
 .up_bar {
   display: flex; /* Use flexbox for horizontal alignment */
   justify-content: flex-start; /* Align items to the start (left) of the main axis */
   align-items: center; /* Center items along the cross axis */
   padding-left: 2px;
-  padding-top: 1px;
+  padding-top: 2px;
   background-color: lightgray;
   border-top: 2px solid white;
   border-bottom: 2px solid lightgray;
@@ -35,9 +50,9 @@ button {
 }
 
 
-
 button:hover {
   cursor: pointer;
+  background-color: #45a049;
 }
 
 /* Style for the audio element */
