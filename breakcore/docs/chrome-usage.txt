@@ -1,3 +1,5 @@
 To get the site work on chrome go here: --> chrome://settings/content/sound?search=sound
 
 Add to "Allowed to play sound" the following url: --> https://redkatz.github.io/breakcore/breakcore.html
+
+(or join freedom and install firefox)
